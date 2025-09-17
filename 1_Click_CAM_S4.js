@@ -321,6 +321,7 @@ document.addEventListener("mousedown",(e)=>{
         ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&access_level=SUPPORT_EXTENDED&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
       }
       document.getElementById("camText").value = "";
+      document.getElementById("userText").value = "";
     }
 
   }
@@ -359,7 +360,6 @@ navigation.addEventListener("navigate", e => {
 //Setting content when case is opened
 ise.case.onUpdate2(
     async (receivedCaseData) => {
-      console.log(receivedCaseData);
       if(receivedCaseData.types[0] == "nocase"){
         document.body.removeChild(document.getElementById("camButton"));
         document.getElementById("camText").value = "";
