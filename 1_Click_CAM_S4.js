@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     1-Click CAM Tool S/4Hana Cloud
-// @version  1.0
+// @version  1.0.1
 // @grant    none
 // @match    https://itsm.services.sap/now/cwf/*
 // @exclude  *://itsm.services.sap/attach_knowledge*
