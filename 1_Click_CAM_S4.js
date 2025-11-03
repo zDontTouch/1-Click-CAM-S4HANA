@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name     1-Click CAM Tool S/4Hana Cloud
-// @version  1.0.1
+// @version  1.1
 // @grant    none
 // @match    https://itsm.services.sap/now/cwf/*
-// @exclude  *://itsm.services.sap/attach_knowledge*
+/// @exclude  *://itsm.services.sap/attach_knowledge*
 // @exclude  *://itsm.services.sap/*record/incident*
 // ==/UserScript==
 
@@ -286,20 +286,34 @@ function sendAnalytics(metricName){
 
 var camButton = document.createElement("button");
 camButton.setAttribute("id","camButton");
-camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:155px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
+//camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:147px; top:161px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
+camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:147px; top:161px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
 camButton.innerHTML = "1-Click CAM";
 
 var tenantTextBox = document.createElement("input");
 tenantTextBox.setAttribute("id","camText");
-tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:395px; top:155px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+//tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
 tenantTextBox.setAttribute("placeholder","System/Client");
 
 var cbuserTextBox = document.createElement("input");
 cbuserTextBox.setAttribute("id","userText");
-cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:285px; top:155px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:293px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
 cbuserTextBox.setAttribute("placeholder","CB user");
 
+var CBUserButton = document.createElement("button");
+CBUserButton.setAttribute("id","CBUserButton");
+CBUserButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:270px; top:161px; vertical-align:middle; padding:5.7px 1px; title:\"Select from CB Users Detected in the Case\"; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:0.8rem; line-weight:1.25;");
+CBUserButton.innerHTML = "✨";
+
+var CBUserSuggestion = document.createElement("div");
+var CBUserSuggestionHeader = document.createElement("h3");
+CBUserSuggestionHeader.setAttribute("style","align:center;");
+CBUserSuggestionHeader.innerHTML = "CB Users Detected (experimental):";
+CBUserSuggestion.appendChild(CBUserSuggestionHeader);
+
 var caseData;
+
 
 document.addEventListener("mousedown",(e)=>{
   if(e.target.id == "camButton"){
@@ -307,13 +321,11 @@ document.addEventListener("mousedown",(e)=>{
     if(document.getElementById("camText").value == ""){
       sendAnalytics("Connection_Same_System");
       if(document.getElementById("userText").value.toString().trim() == ""){
-        //ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?TENANT_ID="+caseData.headers.data.systemNumber+"&access_level=SUPPORT_EXTENDED&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
         ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?TENANT_ID="+caseData.headers.data.systemNumber+"&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
-        ise.tab.add(caseData.headers.data.installBase.url, { show: false } );
+        //ise.tab.add(caseData.headers.data.installBase.url.toString().replace(".s4hana","-adm.s4hana").replace(".sap",".sap/adm"), { show: false } );
       }else{
-        //ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?TENANT_ID="+caseData.headers.data.systemNumber+"&access_level=SUPPORT_EXTENDED&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
         ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?TENANT_ID="+caseData.headers.data.systemNumber+"&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
-        ise.tab.add(caseData.headers.data.installBase.url, { show: false } );
+        //ise.tab.add(caseData.headers.data.installBase.url, { show: false } );
       }
       
     }else{
@@ -341,37 +353,61 @@ document.addEventListener("mousedown",(e)=>{
       document.getElementById("userText").value = "";
     }
 
+  }else if(e.target.id == "CBUserButton"){
+    if(document.getElementById("CBSuggestionDiv") == null){
+      CBUserSuggestion.setAttribute("id","CBSuggestionDiv");
+      CBUserSuggestion.setAttribute("style","display:block; position:absolute; right:0px; width:460px; height:200px; top:30px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),1);border-style:solid; border-width:1px; border-radius:8px; border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148)));");
+        CBUserButton.appendChild(CBUserSuggestion);
+    }else{
+      CBUserButton.removeChild(document.getElementById("CBSuggestionDiv"))
+    }
+  }else if(e.target.id == "CBSuggestionDiv"){
+
+  }else if(e.target.id.startsWith("CBSuggestion-")){
+    document.getElementById("userText").value = e.target.innerHTML.split(" ")[0];
+    try{
+      CBUserButton.removeChild(document.getElementById("CBSuggestionDiv"))
+    }catch(err){}
+  }else{
+    try{
+      CBUserButton.removeChild(document.getElementById("CBSuggestionDiv"))
+    }catch(err){}
   }
 });
 
 navigation.addEventListener("navigate", e => {
   try{
     if(e.destination.url.toString().indexOf("/record/incident")>=0){
-      camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:196px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
+      camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:147px; top:202px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
       document.body.appendChild(camButton);
-      tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:395px; top:196px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+      tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
       document.body.appendChild(tenantTextBox);
-      cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:285px; top:196px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+      cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:293px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
       document.body.appendChild(cbuserTextBox);
+      CBUserButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:270px; top:161px; vertical-align:middle; padding:5.7px 1px; title:\"Select from CB Users Detected in the Case\"; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:0.8rem; line-weight:1.25;");
+      document.body.appendChild(CBUserButton);
     }else if(caseData.types[0] == "nocase"){
       document.body.removeChild(document.getElementById("camButton"));
       document.getElementById("camText").value = "";
       document.body.removeChild(document.getElementById("camText"));
       document.getElementById("userText").value = "";
       document.body.removeChild(document.getElementById("userText"));
+      document.body.removeChild(CBUserButton);
     }else if(e.destination.url.toString().indexOf("kb_template_kcs_article")>=0 || e.destination.url.toString().indexOf("sn_customerservice_action_plans")>=0){
-      camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:196px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
-            tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:395px; top:196px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
-            cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:285px; top:196px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+      camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:147px; top:202px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
+      tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+      cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:293px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
       document.body.removeChild(document.getElementById("camButton"));
       document.getElementById("camText").value = "";
       document.body.removeChild(document.getElementById("camText"));
       document.getElementById("userText").value = "";
       document.body.removeChild(document.getElementById("userText"));
+      document.body.removeChild(CBUserButton);
     }else{
       document.body.appendChild(camButton);
       document.body.appendChild(tenantTextBox);
       document.body.appendChild(cbuserTextBox);
+      document.body.appendChild(CBUserButton);
     }
   }catch(e){
 
@@ -379,6 +415,9 @@ navigation.addEventListener("navigate", e => {
 });
 
 //Setting content when case is opened
+var CBUsers = [];
+var CBUsersDates = [];
+var CBUsersAuthors = [];
 ise.case.onUpdate2(
     async (receivedCaseData) => {
       if(receivedCaseData.types[0] == "nocase"){
@@ -387,23 +426,64 @@ ise.case.onUpdate2(
         document.body.removeChild(document.getElementById("camText"));
         document.getElementById("userText").value = "";
         document.body.removeChild(document.getElementById("userText"));
+        document.body.removeChild(CBUserButton);
         caseData.types[0] = "nocase";
-        camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:155px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
-        tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:395px; top:155px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
-        cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:285px; top:155px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
-      }else if (receivedCaseData.types[0] == "headers"){
+        camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:147px; top:161px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
+        tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+        cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:293px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+        CBUserButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:270px; top:161px; vertical-align:middle; padding:5.7px 1px; title:\"Select from CB Users Detected in the Case\"; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:0.8rem; line-weight:1.25;");
+      }else if (receivedCaseData.types.indexOf("headers")>=0){
         caseData = receivedCaseData;
         if(window.location.href.toString().indexOf("/record/incident") >= 0){
-          camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:162px; top:196px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
-          tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:395px; top:196px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
-          cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:285px; top:196px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+          camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:147px; top:202px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
+          tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+          cbuserTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:100px; height:25px; right:293px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+          CBUserButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:270px; top:161px; vertical-align:middle; padding:5.7px 1px; title:\"Select from CB Users Detected in the Case\"; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:0.8rem; line-weight:1.25;");
+          document.body.appendChild(CBUserButton);
           document.body.appendChild(camButton);
           document.body.appendChild(tenantTextBox);
         }else{
           document.body.appendChild(camButton);
           document.body.appendChild(tenantTextBox);
           document.body.appendChild(cbuserTextBox);
+          document.body.appendChild(CBUserButton);
         }
-      }      
+      } 
+      
+      //try to detect CB users mentioned in the communication
+      var CBUserIndex;
+      CBUsers = [];
+      CBUsersDates = [];
+      CBUsersAuthors = [];
+      for(let i=0; i<receivedCaseData.communication.data.memos.length; i++){
+        CBUserIndex = receivedCaseData.communication.data.memos[i].text.toString().search(/CB[0-9]{10}/g);
+        if(CBUserIndex >= 0){
+            CBUsers.push(receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex,CBUserIndex+12));
+            CBUsersDates.push(receivedCaseData.communication.data.memos[i].Timestamp);
+            CBUsersAuthors.push(receivedCaseData.communication.data.memos[i].userName);
+        }
+      }
+
+      CBUserSuggestion.innerHTML ="";
+      CBUserSuggestion.appendChild(CBUserSuggestionHeader);
+      if(CBUsers.length>0){
+        var CBUserSuggestionContent = document.createElement("ul");
+        CBUserSuggestionContent.setAttribute("style","align: left; margin-left:-20px;");
+        CBUserSuggestionContent.setAttribute("style","align:left; list-style-type: none;");
+        for(var i=0; i<CBUsers.length; i++){
+          CBUserSuggestionContentItem = document.createElement("li");
+          CBUserSuggestionContentItem.setAttribute("style","align:left; margin-left:-50px; padding-left:-50px;");
+          CBUserSuggestionContentItem.setAttribute("id","CBSuggestion-"+CBUsers[i]);
+          var Noteauthor = (CBUsersAuthors[i]==null)?"Case Description":CBUsersAuthors[i];
+          CBUserSuggestionContentItem.innerHTML = CBUsers[i]+" &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size:15px;\">"+Noteauthor+" on "+CBUsersDates[i].toString().split(" ")[0] +"</span>";
+          CBUserSuggestionContent.appendChild(CBUserSuggestionContentItem);
+        }
+      }else{
+        var CBUserSuggestionContent = document.createElement("div");
+        CBUserSuggestionContent.innerHTML = "No CB Users detected in case communication";
+
+      }
+      CBUserSuggestion.appendChild(CBUserSuggestionContent);
+
   },
-  ["headers"]);
+  ["communication","headers"]);
