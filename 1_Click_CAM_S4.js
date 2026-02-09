@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     1-Click CAM Tool S/4Hana Cloud
-// @version  1.1
+// @version  1.2
 // @grant    none
 // @match    https://itsm.services.sap/now/cwf/*
 /// @exclude  *://itsm.services.sap/attach_knowledge*
@@ -356,7 +356,7 @@ document.addEventListener("mousedown",(e)=>{
   }else if(e.target.id == "CBUserButton"){
     if(document.getElementById("CBSuggestionDiv") == null){
       CBUserSuggestion.setAttribute("id","CBSuggestionDiv");
-      CBUserSuggestion.setAttribute("style","display:block; position:absolute; right:0px; width:460px; height:200px; top:30px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),1);border-style:solid; border-width:1px; border-radius:8px; border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148)));");
+      CBUserSuggestion.setAttribute("style","display:block; position:absolute; right:0px; width:490px; height:200px; top:30px; background-color:RGB(var(--now-color_background--primary,var(--now-color--neutral-3,209,214,214)),1);border-style:solid; border-width:1px; border-radius:8px; border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148)));");
         CBUserButton.appendChild(CBUserSuggestion);
     }else{
       CBUserButton.removeChild(document.getElementById("CBSuggestionDiv"))
@@ -420,6 +420,7 @@ var CBUsersDates = [];
 var CBUsersAuthors = [];
 ise.case.onUpdate2(
     async (receivedCaseData) => {
+      console.log(receivedCaseData);
       if(receivedCaseData.types[0] == "nocase"){
         document.body.removeChild(document.getElementById("camButton"));
         document.getElementById("camText").value = "";
