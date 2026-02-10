@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     1-Click CAM Tool S/4Hana Cloud
-// @version  1.2
+// @version  1.3
 // @grant    none
 // @match    https://itsm.services.sap/now/cwf/*
 /// @exclude  *://itsm.services.sap/attach_knowledge*
@@ -284,6 +284,11 @@ function sendAnalytics(metricName){
 
 /*****************************************************************************************************/
 
+var CBUsers = [];
+var CBUsersDates = [];
+var CBUsersAuthors = [];
+var CBUsersMessage = [];
+
 var camButton = document.createElement("button");
 camButton.setAttribute("id","camButton");
 //camButton.setAttribute("style","cursor:pointer; z-index:99; display:block; position:absolute; right:147px; top:161px; vertical-align:middle; padding:5.5px 12px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); border-width:var(--now-button--secondary--border-width,var(--now-button--border-width,var(--now-actionable--border-width,1px))); color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28))); font-family: var(--now-button--font-family,var(--now-actionable--font-family,var(--now-font-family,\"Source Sans Pro\",Arial,sans-serif))); font-style:var(--now-button--font-style,var(--now-actionable--font-style,normal)); font-weight:var(--now-button--font-weight,var(--now-actionable--font-weight,normal)); font-size:1rem; line-weight:1.25;");
@@ -354,22 +359,52 @@ document.addEventListener("mousedown",(e)=>{
     }
 
   }else if(e.target.id == "CBUserButton"){
+    try{
+      CBUserSuggestion.removeChild(document.getElementById("messageSnippet"));
+    }catch(err){
+    }
     if(document.getElementById("CBSuggestionDiv") == null){
       CBUserSuggestion.setAttribute("id","CBSuggestionDiv");
-      CBUserSuggestion.setAttribute("style","display:block; position:absolute; right:0px; width:490px; height:200px; top:30px; background-color:RGB(var(--now-color_background--primary,var(--now-color--neutral-3,209,214,214)),1);border-style:solid; border-width:1px; border-radius:8px; border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148)));");
-        CBUserButton.appendChild(CBUserSuggestion);
+      CBUserSuggestion.setAttribute("style","display:block; position:absolute; right:0px; width:520px; height:200px; top:30px; background-color:RGB(var(--now-color_background--primary,var(--now-color--neutral-3,209,214,214)),1);border-style:solid; border-width:1px; border-radius:8px; border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148)));");
+      CBUserButton.appendChild(CBUserSuggestion);
     }else{
+      try{
+        CBUserSuggestion.removeChild(document.getElementById("messageSnippet"));
+      }catch(err){}
       CBUserButton.removeChild(document.getElementById("CBSuggestionDiv"))
     }
+  }else if(e.target.id.startsWith("showMessage-")){
+    if(document.getElementById("messageSnippet") == null){
+      messageSnippetDiv = document.createElement("div");
+      messageSnippetDiv.setAttribute("id","messageSnippet");
+      messageSnippetDiv.setAttribute("style","display:block; position:absolute; right:50px; width:300px; height:200px; top:60px; background-color:RGB(var(--now-color_background--primary,var(--now-color--neutral-3,209,214,214)),1);border-style:solid; border-width:1px; border-radius:8px; border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148)));")
+      messageSnippetDiv.innerHTML = "<h3 style=\"align:center;\">Original Message:</h4><div align=\"left\" style=\"margin:10px; color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28)));\">\"[...]"+CBUsersMessage[e.target.id.toString().substring(e.target.id.toString().length-1)]+"[...]\"\"</div>";
+      CBUserSuggestion.appendChild(messageSnippetDiv);
+    }else{
+      try{
+        CBUserSuggestion.removeChild(document.getElementById("messageSnippet"));
+      }catch(err){}
+    }
+  
   }else if(e.target.id == "CBSuggestionDiv"){
+
+    try{
+        CBUserSuggestion.removeChild(document.getElementById("messageSnippet"));
+    }catch(err){}
 
   }else if(e.target.id.startsWith("CBSuggestion-")){
     document.getElementById("userText").value = e.target.innerHTML.split(" ")[0];
     try{
+      try{
+        CBUserSuggestion.removeChild(document.getElementById("messageSnippet"));
+      }catch(err){}
       CBUserButton.removeChild(document.getElementById("CBSuggestionDiv"))
     }catch(err){}
   }else{
     try{
+      try{
+        CBUserSuggestion.removeChild(document.getElementById("messageSnippet"));
+      }catch(err){}
       CBUserButton.removeChild(document.getElementById("CBSuggestionDiv"))
     }catch(err){}
   }
@@ -415,12 +450,8 @@ navigation.addEventListener("navigate", e => {
 });
 
 //Setting content when case is opened
-var CBUsers = [];
-var CBUsersDates = [];
-var CBUsersAuthors = [];
 ise.case.onUpdate2(
     async (receivedCaseData) => {
-      console.log(receivedCaseData);
       if(receivedCaseData.types[0] == "nocase"){
         document.body.removeChild(document.getElementById("camButton"));
         document.getElementById("camText").value = "";
@@ -456,12 +487,25 @@ ise.case.onUpdate2(
       CBUsers = [];
       CBUsersDates = [];
       CBUsersAuthors = [];
+      CBUsersMessage = [];
       for(let i=0; i<receivedCaseData.communication.data.memos.length; i++){
         CBUserIndex = receivedCaseData.communication.data.memos[i].text.toString().search(/CB[0-9]{10}/g);
         if(CBUserIndex >= 0){
             CBUsers.push(receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex,CBUserIndex+12));
             CBUsersDates.push(receivedCaseData.communication.data.memos[i].Timestamp);
             CBUsersAuthors.push(receivedCaseData.communication.data.memos[i].userName);
+            //build the HTML message snippet highlighting the CB user by concatenating part of the message before and after the CB user, together with a formatted span for the highlight
+            CBUsersMessage.push(receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex-60,CBUserIndex) + "<span style=\"font-weight: 1000; text-decoration: underline;\">" + receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex,CBUserIndex+12) + "</span>" + receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex+12,CBUserIndex+60));
+            //manually test for a second CB user in the same memo after the first one
+            CBUserIndex = receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex+12).search(/CB[0-9]{10}/g);
+            if(CBUserIndex >= 0){
+              CBUsers.push(receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex,CBUserIndex+12));
+              CBUsersDates.push(receivedCaseData.communication.data.memos[i].Timestamp);
+              CBUsersAuthors.push(receivedCaseData.communication.data.memos[i].userName);
+              //build the HTML message snippet highlighting the CB user by concatenating part of the message before and after the CB user, together with a formatted span for the highlight
+              CBUsersMessage.push(receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex-60,CBUserIndex) + "<span style=\"font-weight: 1000; text-decoration: underline;\">" + receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex,CBUserIndex+12) + "</span>" + receivedCaseData.communication.data.memos[i].text.toString().substring(CBUserIndex+12,CBUserIndex+60));
+            }
+
         }
       }
 
@@ -474,9 +518,9 @@ ise.case.onUpdate2(
         for(var i=0; i<CBUsers.length; i++){
           CBUserSuggestionContentItem = document.createElement("li");
           CBUserSuggestionContentItem.setAttribute("style","align:left; margin-left:-50px; padding-left:-50px;");
-          CBUserSuggestionContentItem.setAttribute("id","CBSuggestion-"+CBUsers[i]);
+          CBUserSuggestionContentItem.setAttribute("id","CBSuggestion-"+CBUsers[i]+"-"+i);
           var Noteauthor = (CBUsersAuthors[i]==null)?"Case Description":CBUsersAuthors[i];
-          CBUserSuggestionContentItem.innerHTML = CBUsers[i]+" &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size:15px;\">"+Noteauthor+" on "+CBUsersDates[i].toString().split(" ")[0] +"</span>";
+          CBUserSuggestionContentItem.innerHTML = CBUsers[i]+" &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;<span style=\"font-size:15px;\">"+Noteauthor+" on "+CBUsersDates[i].toString().split(" ")[0] +"</span>&nbsp;&nbsp;<button style=\"background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif));\"><span id=\"showMessage-"+i+"\" style=\"color:RGB(var(--now-button--secondary--color,var(--now-color--neutral-18,22,27,28)));\">👁</span></button>";
           CBUserSuggestionContent.appendChild(CBUserSuggestionContentItem);
         }
       }else{
