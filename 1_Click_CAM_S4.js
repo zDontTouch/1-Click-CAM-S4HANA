@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     1-Click CAM Tool S/4Hana Cloud
-// @version  1.3.1
+// @version  1.3.2
 // @grant    none
 // @match    https://itsm.services.sap/now/cwf/*
 /// @exclude  *://itsm.services.sap/attach_knowledge*
@@ -298,7 +298,7 @@ camButton.innerHTML = "1-Click CAM";
 var tenantTextBox = document.createElement("input");
 tenantTextBox.setAttribute("id","camText");
 //tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:85px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color--hover,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha--hover,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
-tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:150px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
+tenantTextBox.setAttribute("style","z-index:99; display:block; position:absolute; width:160px; height:25px; right:403px; top:161px; background-color:RGB(var(--now-button--secondary--background-color,var(--now-color--neutral-3,209,214,214)),var(--now-button--secondary--background-color-alpha,var(--now-button--secondary--background-color-alpha,1))); border-color:RGB(var(--now-button--secondary--border-color,var(--now-color--neutral-7,135,147,148))); border-radius:var(--now-button--secondary--border-radius,var(--now-button--border-radius,var(--now-actionable--border-radius,0))); font-family: var(--now-form-field--font-family, var(--now-font-family, \"Source Sans Pro\", Arial, sans-serif)); color:grey;");
 tenantTextBox.setAttribute("placeholder","URL or System/Client");
 
 var cbuserTextBox = document.createElement("input");
@@ -335,25 +335,36 @@ document.addEventListener("mousedown",(e)=>{
       
     }else{
       sendAnalytics("Connection_Alternative_System");
-      //tries to split values like "abc/123"
-      var trimmed 
-      trimmed = document.getElementById("camText").value.toString().trim().split("/");
-      if(trimmed.length<2){
-        //tries to split values like "abc 123"
-        trimmed = document.getElementById("camText").value.toString().trim().split(" ");
-        if(trimmed.length<2){
-          //splits using lenght (3 for system, 3 for client)
-          trimmed[0] = document.getElementById("camText").value.toString().trim().slice(0,3).trim();
-          trimmed[1] = document.getElementById("camText").value.toString().trim().slice(3).trim();
-          console.log(trimmed[1]);
+      if(document.getElementById("camText").value.toString().trim().indexOf("my")>=0){
+        console.log("URL: "+document.getElementById("camText").value.toString().trim());
+        if(document.getElementById("userText").value.toString().trim() == ""){
+          //ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&access_level=SUPPORT_EXTENDED&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
+          ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?url="+document.getElementById("camText").value.toString().trim()+"&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
+        }else{
+          //ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&access_level=SUPPORT_EXTENDED&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
+          ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?url="+document.getElementById("camText").value.toString().trim()+"&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
         }
-      }
-      if(document.getElementById("userText").value.toString().trim() == ""){
-        //ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&access_level=SUPPORT_EXTENDED&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
-        ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
       }else{
-        //ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&access_level=SUPPORT_EXTENDED&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
-        ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
+        //tries to split values like "abc/123"
+        var trimmed 
+        trimmed = document.getElementById("camText").value.toString().trim().split("/");
+        if(trimmed.length<2){
+          //tries to split values like "abc 123"
+          trimmed = document.getElementById("camText").value.toString().trim().split(" ");
+          if(trimmed.length<2){
+            //splits using lenght (3 for system, 3 for client)
+            trimmed[0] = document.getElementById("camText").value.toString().trim().slice(0,3).trim();
+            trimmed[1] = document.getElementById("camText").value.toString().trim().slice(3).trim();
+            console.log(trimmed[1]);
+          }
+        }
+        if(document.getElementById("userText").value.toString().trim() == ""){
+          //ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&access_level=SUPPORT_EXTENDED&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
+          ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&TYPE=SN&POINTER="+caseData.id+"#", { show: true } );
+        }else{
+          //ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&access_level=SUPPORT_EXTENDED&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
+          ise.tab.add("https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_sup_central?sid="+trimmed[0]+"&client="+trimmed[1]+"&TYPE=SN&additional_parameter=ADDAUTH_USER&copyuser="+document.getElementById("userText").value.toString().trim()+"&POINTER="+caseData.id+"#", { show: true } );
+        }
       }
       document.getElementById("camText").value = "";
       document.getElementById("userText").value = "";
